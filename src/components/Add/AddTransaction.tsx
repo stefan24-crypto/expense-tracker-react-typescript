@@ -26,7 +26,8 @@ import {
 } from "@speechly/react-ui";
 import { useSpeechContext } from "@speechly/react-client";
 import { async } from "@firebase/util";
-import { Preview } from "@mui/icons-material";
+import { FormatListBulletedSharp, Preview } from "@mui/icons-material";
+import Banner from "./Banner";
 
 interface stateStructure {
   amount: string;
@@ -43,14 +44,11 @@ const initialState: stateStructure = {
 };
 
 const AddTransaction: React.FC = () => {
-  //   const [type, setType] = useState<string>("");
-  //   const [category, setCategory] = useState<string>("");
-  //   const [amount, setAmount] = useState<string>("");
-  //   const [date, setDate] = useState<any>(new Date());
   const [formState, setFormState] = useState(initialState);
   const transactionCollections = collection(db, "transactions");
   const navigate = useNavigate();
   const { segment } = useSpeechContext();
+  const [showBanner, setShowBanner] = useState<boolean>(false);
 
   const handleTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormState((prev) => ({ ...prev, type: e.target.value }));
@@ -71,6 +69,7 @@ const AddTransaction: React.FC = () => {
   };
 
   const createTransaction = () => {
+    setShowBanner(true);
     let theDate;
     if (!formState.date?._d) {
       theDate = new Date(formState.date);
@@ -85,9 +84,7 @@ const AddTransaction: React.FC = () => {
       amount: +formState.amount!,
     };
     addToFirebase(data);
-    console.log("here");
     setFormState((prev) => initialState);
-    // navigate("/");
   };
 
   console.log(formState);
@@ -98,6 +95,7 @@ const AddTransaction: React.FC = () => {
   };
 
   useEffect(() => {
+    // console.log("In use Effect"); // Bug here
     if (segment) {
       if (segment.intent.intent === "add_expense") {
         setFormState((prev) => ({ ...prev, type: "Expense" }));
@@ -157,98 +155,108 @@ const AddTransaction: React.FC = () => {
         formState.date
       ) {
         createTransaction();
+        document.location.reload(); // sort of fixed it i guess
         // setFormState({ amount: "", type: "", category: "", date: new Date() });
       }
     }
   }, [segment]);
 
   return (
-    <section>
-      <header className={classes.header}>
-        <h1>Add Transaction</h1>
-        <p>
-          Try Saying: Add Income for 50 dollars in category business for next
-          monday
-        </p>
-        <br />
-        <hr className={classes.hr}></hr>
-        <div className={classes.transcript}>
-          <p>{segment && segment.words.map((w) => w.value).join(" ")}</p>
-        </div>
-      </header>
-      <main className={classes.main}>
-        <form className={classes.form} onSubmit={handleSubmit}>
-          <TextField
-            onChange={handleTypeChange}
-            value={formState.type}
-            variant="outlined"
-            select
-            label="Type"
-            required
-          >
-            <MenuItem value="Income">Income</MenuItem>
-            <MenuItem value="Expense">Expense</MenuItem>
-          </TextField>
-          <TextField
-            onChange={handleCategoryChange}
-            value={formState.category}
-            variant="outlined"
-            select
-            disabled={formState.type ? false : true}
-            label="Category"
-            required
-          >
-            {formState.type === "Income"
-              ? incomeCategories.map((each) => (
-                  <MenuItem key={each.type} value={each.type}>
-                    {each.type}
-                  </MenuItem>
-                ))
-              : expenseCategories.map((each) => (
-                  <MenuItem key={each.type} value={each.type}>
-                    {each.type}
-                  </MenuItem>
-                ))}
-          </TextField>
-          <FormControl>
-            <InputLabel htmlFor="amount">Amount</InputLabel>
-            <OutlinedInput
-              id="amount"
-              label="Amount"
-              startAdornment={
-                <InputAdornment position="start">$</InputAdornment>
-              }
-              type="number"
-              onChange={handleAmountChange}
-              value={formState.amount}
-              required
-            />
-          </FormControl>
-          <LocalizationProvider dateAdapter={DateAdapter}>
-            <DatePicker
-              label="Date"
-              value={formState.date}
-              renderInput={(params) => <TextField {...params} required />}
-              onChange={(newValue) => {
-                setFormState((prev) => ({ ...prev, date: newValue! }));
-              }}
-            />
-          </LocalizationProvider>
-          <div className={classes.btns}>
-            <button className={classes.btn} type="submit">
-              Submit
-            </button>
+    <>
+      {showBanner && (
+        <Banner
+          message="Transaction Added"
+          AddOrDelete="Add"
+          close={() => setShowBanner(false)}
+        />
+      )}
+      <section>
+        <header className={classes.header}>
+          <h1>Add Transaction</h1>
+          <p>
+            Try Saying: Add Income for 50 dollars in category business for next
+            monday
+          </p>
+          <br />
+          <hr className={classes.hr}></hr>
+          <div className={classes.transcript}>
+            <p>{segment && segment.words.map((w) => w.value).join(" ")}</p>
           </div>
-        </form>
-      </main>
-      <footer>
-        <div></div>
-        <PushToTalkButtonContainer>
-          <PushToTalkButton />
-          <ErrorPanel />
-        </PushToTalkButtonContainer>
-      </footer>
-    </section>
+        </header>
+        <main className={classes.main}>
+          <form className={classes.form} onSubmit={handleSubmit}>
+            <TextField
+              onChange={handleTypeChange}
+              value={formState.type}
+              variant="outlined"
+              select
+              label="Type"
+              required
+            >
+              <MenuItem value="Income">Income</MenuItem>
+              <MenuItem value="Expense">Expense</MenuItem>
+            </TextField>
+            <TextField
+              onChange={handleCategoryChange}
+              value={formState.category}
+              variant="outlined"
+              select
+              disabled={formState.type ? false : true}
+              label="Category"
+              required
+            >
+              {formState.type === "Income"
+                ? incomeCategories.map((each) => (
+                    <MenuItem key={each.type} value={each.type}>
+                      {each.type}
+                    </MenuItem>
+                  ))
+                : expenseCategories.map((each) => (
+                    <MenuItem key={each.type} value={each.type}>
+                      {each.type}
+                    </MenuItem>
+                  ))}
+            </TextField>
+            <FormControl>
+              <InputLabel htmlFor="amount">Amount</InputLabel>
+              <OutlinedInput
+                id="amount"
+                label="Amount"
+                startAdornment={
+                  <InputAdornment position="start">$</InputAdornment>
+                }
+                type="number"
+                onChange={handleAmountChange}
+                value={formState.amount}
+                required
+              />
+            </FormControl>
+            <LocalizationProvider dateAdapter={DateAdapter}>
+              <DatePicker
+                label="Date"
+                value={formState.date}
+                renderInput={(params) => <TextField {...params} required />}
+                onChange={(newValue) => {
+                  setFormState((prev) => ({ ...prev, date: newValue! }));
+                }}
+              />
+            </LocalizationProvider>
+            <div className={classes.btns}>
+              <button className={classes.btn} type="submit">
+                Submit
+              </button>
+            </div>
+          </form>
+        </main>
+        <footer>
+          <div></div>
+          <PushToTalkButtonContainer>
+            <PushToTalkButton />
+            <ErrorPanel />
+          </PushToTalkButtonContainer>
+        </footer>
+      </section>
+    </>
   );
 };
 

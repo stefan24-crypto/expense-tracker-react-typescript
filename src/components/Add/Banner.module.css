@@ -1,0 +1,25 @@
+.banner {
+  display: flex;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  gap: 10px;
+}
+
+.clear {
+  display: flex;
+  align-items: center;
+  padding: 0.2rem;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  transition: 200ms color ease;
+}
+
+.clear:hover {
+  color: var(--red);
+}
