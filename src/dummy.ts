@@ -32,7 +32,7 @@ export const DUMMY_TRANSACTIONS: Transaction[] = [
   {
     id: "t5",
     type: "Expense",
-    category: "Gifts",
+    category: "Bills",
     date: new Date(2020, 12, 12),
     amount: 987.23,
   },

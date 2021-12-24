@@ -31,6 +31,13 @@ export const incomeCategories = [
   { type: "Other", color: incomeColors[5], icon: other },
 ];
 
+export type IncomeCategory =
+  | "Business"
+  | "Investments"
+  | "Salary"
+  | "Savings"
+  | "Rental income"
+  | "Other";
 const expenseColors = [
   "#6818F0",
   "#FF4351",
@@ -48,29 +55,12 @@ export const expenseCategories = [
   { type: "Other", color: expenseColors[5], icon: other },
 ];
 
-export type IncomeCategory =
-  | "Business"
-  | "Investments"
-  | "Extra income"
-  | "Deposits"
-  | "Lottery"
-  | "Gifts"
-  | "Salary"
-  | "Savings"
-  | "Rental income";
-
 export type ExpenseCategory =
   | "Bills"
-  | "Car"
   | "Clothes"
-  | "Travel"
   | "Travel"
   | "Food"
   | "Shopping"
-  | "House"
-  | "Entertainment"
-  | "Phone"
-  | "Pets"
   | "Other";
 
 export interface Transaction {

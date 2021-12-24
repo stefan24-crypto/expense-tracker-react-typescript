@@ -6,6 +6,7 @@ import { Chart, registerables } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import { expenseCategories } from "../../models";
 import useDataValues from "../hooks/useDataValues";
+import Summary from "../Summary/Summary";
 
 const Expense: React.FC = () => {
   Chart.register(...registerables);
@@ -35,7 +36,7 @@ const Expense: React.FC = () => {
     <section className={classes.section}>
       <header className={classes.header}>
         <h1>
-          Total Expenses
+          Total Expenses{" "}
           <span>
             <NumberFormat
               value={totalExpenses}
@@ -59,6 +60,7 @@ const Expense: React.FC = () => {
                 title: {
                   display: true,
                   text: "Expenses",
+                  color: "#ff4351",
                   font: {
                     size: 32,
                   },
@@ -79,7 +81,9 @@ const Expense: React.FC = () => {
           })}
         </div>
       </main>
-      <footer></footer>
+      <footer>
+        <Summary listofTransactions={expenses} isIncome={false} />
+      </footer>
     </section>
   );
 };

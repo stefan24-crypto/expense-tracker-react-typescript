@@ -13,18 +13,16 @@ const Balance: React.FC = () => {
   const balance = totalIncome - totalExpenses;
   return (
     <section className={classes.section}>
-      <h1 className={classes.bal}>
-        Balance{" "}
-        <span>
-          <NumberFormat
-            value={balance}
-            prefix="$"
-            thousandSeparator
-            displayType="text"
-            decimalScale={2}
-          />
-        </span>
-      </h1>
+      <h1 className={classes.bal}>Balance </h1>
+      <span>
+        <NumberFormat
+          value={balance}
+          prefix="$"
+          thousandSeparator
+          displayType="text"
+          decimalScale={2}
+        />
+      </span>
     </section>
   );
 };

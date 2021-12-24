@@ -7,6 +7,7 @@ import { Doughnut } from "react-chartjs-2";
 import { Bar, Line } from "react-chartjs-2";
 import useDataValues from "../hooks/useDataValues";
 import { Chart, registerables } from "chart.js";
+import Summary from "../Summary/Summary";
 
 const Income: React.FC = () => {
   Chart.register(...registerables);
@@ -69,6 +70,7 @@ const Income: React.FC = () => {
                 title: {
                   display: true,
                   text: "Income",
+                  color: "#02edc5",
                   font: {
                     size: 32,
                   },
@@ -89,7 +91,9 @@ const Income: React.FC = () => {
           })}
         </div>
       </main>
-      <footer></footer>
+      <footer>
+        <Summary listofTransactions={income} isIncome={true} />
+      </footer>
     </section>
   );
 };

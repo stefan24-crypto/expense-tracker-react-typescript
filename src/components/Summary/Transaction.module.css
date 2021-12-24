@@ -1,0 +1,29 @@
+.transaction {
+  display: flex;
+  padding: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--blue);
+  margin-bottom: 1rem;
+  border-radius: 0.4rem;
+}
+
+.icon {
+  max-width: 30px;
+}
+
+.left {
+  display: flex;
+  gap: 10px;
+}
+
+.info p {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: gray;
+}
+
+.amount {
+  display: flex;
+  align-items: center;
+}
