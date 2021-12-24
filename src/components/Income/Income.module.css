@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+.section {
+  font-family: "Dosis";
+  padding: 1rem;
+}
+
+.header h1 {
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.header span {
+  font-weight: 600;
+  color: var(--turquoise);
+}
+
+.main {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+}
+
+.chart {
+  width: 60%;
+}
+
+.key {
+  padding: 1em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+  width: 50%;
+  justify-content: space-between;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+.stats {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}

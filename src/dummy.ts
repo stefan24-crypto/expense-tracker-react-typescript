@@ -1,0 +1,88 @@
+import { Transaction } from "./models";
+
+export const DUMMY_TRANSACTIONS: Transaction[] = [
+  {
+    id: "t1",
+    type: "Income",
+    category: "Business",
+    date: new Date(2013, 5, 6),
+    amount: 134.78,
+  },
+  {
+    id: "t2",
+    type: "Expense",
+    category: "Bills",
+    date: new Date(2017, 9, 12),
+    amount: 456.56,
+  },
+  {
+    id: "t3",
+    type: "Expense",
+    category: "Clothes",
+    date: new Date(2019, 1, 8),
+    amount: 553.12,
+  },
+  {
+    id: "t4",
+    type: "Income",
+    category: "Other",
+    date: new Date(2021, 7, 8),
+    amount: 1234.56,
+  },
+  {
+    id: "t5",
+    type: "Expense",
+    category: "Gifts",
+    date: new Date(2020, 12, 12),
+    amount: 987.23,
+  },
+  {
+    id: "t6",
+    type: "Income",
+    category: "Investments",
+    date: new Date(2019, 1, 8),
+    amount: 12435.72,
+  },
+  {
+    id: "t7",
+    type: "Income",
+    category: "Savings",
+    date: new Date(2019, 1, 8),
+    amount: 255.72,
+  },
+  {
+    id: "t8",
+    type: "Income",
+    category: "Salary",
+    date: new Date(2019, 1, 8),
+    amount: 4500.23,
+  },
+  {
+    id: "t8",
+    type: "Income",
+    category: "Rental income",
+    date: new Date(2019, 1, 8),
+    amount: 3124.23,
+  },
+  {
+    id: "t9",
+    type: "Expense",
+    category: "Other",
+    date: new Date(2016, 1, 8),
+    amount: 524.5,
+  },
+  {
+    id: "t10",
+    type: "Expense",
+    category: "Food",
+    date: new Date(2011, 1, 8),
+    amount: 123.62,
+  },
+  {
+    id: "t11",
+    type: "Expense",
+    category: "Travel",
+    date: new Date(2011, 8, 18),
+    amount: 1009.27,
+  },
+];

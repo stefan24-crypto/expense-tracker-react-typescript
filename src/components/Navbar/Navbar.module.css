@@ -1,0 +1,43 @@
+.nav {
+  position: sticky;
+  top: 0;
+  background: linear-gradient(to top, var(--blue), var(--turquoise));
+  width: 100px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  width: 40px;
+}
+
+.logo_div {
+  padding: 1em;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  /* gap: 1em; */
+}
+
+.link {
+  color: white;
+  padding: 1em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 200ms ease-in;
+  cursor: pointer;
+  height: 80px;
+}
+e .link:hover {
+  background: rgba(0, 0, 0, 0.329);
+}

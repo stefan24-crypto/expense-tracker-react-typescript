@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@400;500;600;700;800&family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Poppins", sans-serif;
+  color: white;
+}
+
+:root {
+  --blue: #224d93;
+  --dark-blue: #1a2a62;
+  --turquoise: #02edc5;
+  --red: #ff4351;
+}
