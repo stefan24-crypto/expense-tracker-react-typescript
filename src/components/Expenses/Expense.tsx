@@ -39,7 +39,7 @@ const Expense: React.FC = () => {
           Total Expenses{" "}
           <span>
             <NumberFormat
-              value={totalExpenses}
+              value={totalExpenses.toFixed(2)}
               prefix="$"
               thousandSeparator
               displayType="text"
@@ -73,7 +73,11 @@ const Expense: React.FC = () => {
           {expenseCategories.map((each, i) => {
             const percentage = (data[i] / totalExpenses) * 100;
             return (
-              <p style={{ color: each.color }} className={classes.stats}>
+              <p
+                style={{ color: each.color }}
+                className={classes.stats}
+                key={i}
+              >
                 <img className={classes.icon} src={each.icon} alt="icons" />
                 {each.type} {percentage.toFixed(0)}%
               </p>

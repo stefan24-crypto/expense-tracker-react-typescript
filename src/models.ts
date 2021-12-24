@@ -12,6 +12,7 @@ import clothing from "./images/tshirt.png";
 import travel from "./images/plane.png";
 import food from "./images/salad.png";
 import shopping from "./images/shopping-cart.png";
+import { Timestamp } from "firebase/firestore";
 
 const incomeColors = [
   "#6818F0",
@@ -65,8 +66,8 @@ export type ExpenseCategory =
 
 export interface Transaction {
   id: string;
-  type: "Income" | "Expense";
-  category: IncomeCategory | ExpenseCategory;
-  date: Date;
+  type: string;
+  category: string;
+  date: Timestamp;
   amount: number;
 }

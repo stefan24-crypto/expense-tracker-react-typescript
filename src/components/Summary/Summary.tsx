@@ -7,8 +7,13 @@ interface SummaryProps {
   listofTransactions: Transaction[];
   isIncome: boolean;
 }
+//Sort Transactions to show most recent on to
 
 const Summary: React.FC<SummaryProps> = ({ listofTransactions, isIncome }) => {
+  listofTransactions.sort((a, b) => {
+    if (a.date.toDate().getTime() > b.date.toDate().getTime()) return -1;
+    return 1;
+  });
   return (
     <section>
       <header className={classes.header}>
@@ -34,6 +39,7 @@ const Summary: React.FC<SummaryProps> = ({ listofTransactions, isIncome }) => {
               key={trans.id}
               icon={thisCategory?.icon}
               isIncome={isIncome}
+              id={trans.id}
             />
           );
         })}

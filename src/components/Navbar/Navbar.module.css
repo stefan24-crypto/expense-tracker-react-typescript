@@ -38,6 +38,7 @@
   cursor: pointer;
   height: 80px;
 }
-e .link:hover {
+
+.link:hover {
   background: rgba(0, 0, 0, 0.329);
 }

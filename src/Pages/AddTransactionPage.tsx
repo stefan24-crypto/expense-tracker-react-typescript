@@ -1,11 +1,8 @@
 import React from "react";
+import AddTransaction from "../components/Add/AddTransaction";
 
 const AddTransactionPage: React.FC = () => {
-  return (
-    <section>
-      <h1>Add Transaction Page</h1>
-    </section>
-  );
+  return <AddTransaction />;
 };
 
 export default AddTransactionPage;

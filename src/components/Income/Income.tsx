@@ -18,11 +18,9 @@ const Income: React.FC = () => {
   const totalIncome = income.reduce((acc, each) => acc + each.amount, 0);
 
   const IncomeLabels = incomeCategories.map((each) => each.type);
-  console.log(IncomeLabels);
   const IncomeColors = incomeCategories.map((each) => each.color);
 
   const data = useDataValues(IncomeLabels, income);
-  console.log(data);
 
   const state = {
     labels: IncomeLabels,
@@ -43,7 +41,7 @@ const Income: React.FC = () => {
           Total Income{" "}
           <span>
             <NumberFormat
-              value={totalIncome}
+              value={totalIncome.toFixed(2)}
               prefix="$"
               thousandSeparator
               displayType="text"
@@ -61,6 +59,14 @@ const Income: React.FC = () => {
               scales: {
                 y: {
                   beginAtZero: true,
+                  ticks: {
+                    color: "white",
+                  },
+                },
+                x: {
+                  ticks: {
+                    color: "white",
+                  },
                 },
               },
               plugins: {
@@ -83,7 +89,11 @@ const Income: React.FC = () => {
           {incomeCategories.map((each, i) => {
             const percentage = (data[i] / totalIncome) * 100;
             return (
-              <p style={{ color: each.color }} className={classes.stats}>
+              <p
+                style={{ color: each.color }}
+                className={classes.stats}
+                key={i}
+              >
                 <img src={each.icon} alt="icon" className={classes.icon} />
                 {each.type} {percentage.toFixed(0)}%
               </p>

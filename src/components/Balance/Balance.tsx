@@ -14,9 +14,9 @@ const Balance: React.FC = () => {
   return (
     <section className={classes.section}>
       <h1 className={classes.bal}>Balance </h1>
-      <span>
+      <span style={{ color: balance > 0 ? "#02edc5" : "#ff4351" }}>
         <NumberFormat
-          value={balance}
+          value={Math.abs(balance).toFixed(2)}
           prefix="$"
           thousandSeparator
           displayType="text"
